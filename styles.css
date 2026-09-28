@@ -1,0 +1,257 @@
+@font-face {
+  font-family: "Source Serif 4";
+  src: url("assets/fonts/source-serif-4.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: Inter;
+  src: url("assets/fonts/inter-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: Inter;
+  src: url("assets/fonts/inter-medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --ivory: #f7f3eb;
+  --cream: #f0e8db;
+  --white: #fffcf7;
+  --ink: #282622;
+  --quiet: #635d55;
+  --rose: #80545d;
+  --champagne: #d8c5a7;
+  --prose: min(calc(100% - 64px), 326px);
+  --outer: min(calc(100% - 48px), 342px);
+  font-family: Inter, system-ui, sans-serif;
+  color: var(--ink);
+  background: var(--ivory);
+  font-synthesis: none;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; min-width: 0; }
+main { overflow-x: clip; }
+figure, h1, h2, p { margin: 0; }
+.scene { position: relative; width: 100%; }
+.reading-column, .outer-column { margin-inline: auto; }
+.reading-column { width: var(--prose); }
+.outer-column { width: var(--outer); }
+p { font-size: 18px; line-height: 30px; font-weight: 400; }
+h1, h2, .opening-thought, .small-statement, .return-promise, .final-love {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-weight: 400;
+  font-optical-sizing: auto;
+}
+h1, h2 { text-wrap: pretty; }
+.heart { white-space: nowrap; font-family: system-ui, sans-serif; font-size: .72em; vertical-align: .055em; }
+.date { color: var(--quiet); font: 400 14px/22px Inter, system-ui, sans-serif; letter-spacing: .01em; }
+.photograph { position: relative; overflow: hidden; background: inherit; margin-inline: auto; }
+.photograph picture, .photograph img { display: block; width: 100%; height: 100%; }
+.photograph img { object-fit: cover; }
+.photograph.failed { min-height: 180px; display: grid; place-content: center; padding: 24px; text-align: center; }
+.photograph.failed picture, .photograph.failed img { display: none; }
+.photograph.failed .image-fallback { color: var(--quiet); font: 400 16px/24px Inter, system-ui, sans-serif; }
+
+/* The opening keeps her portrait separate from all writing. */
+.opening { padding-bottom: 80px; }
+.hero-photo { width: 100%; aspect-ratio: 1044 / 1536; }
+.hero-photo img { transform: translate3d(0,var(--hero-y,0px),0) scale(var(--hero-scale,1)); transform-origin: 50% 35%; }
+.hero-veil { position: absolute; inset: 0; pointer-events: none; background: rgba(40,38,34,.35); opacity: 0; }
+.hero-photo.intro-ready .hero-veil { opacity: 1; }
+.hero-photo.intro-ready.playing .hero-veil { opacity: 0; transition: opacity 650ms cubic-bezier(.22,1,.36,1); }
+.hero-photo.intro-ready img { transform: scale(1.05); }
+.hero-photo.intro-ready.playing img { transform: scale(1); transition: transform 1400ms cubic-bezier(.22,1,.36,1); }
+.hero-photo.resuming img { transition: transform 500ms cubic-bezier(.22,1,.36,1); }
+.opening-title h1, .opening-date { position: relative; }
+html.opening-ready .opening-title h1 { opacity: 0; transform: translate3d(0,12px,0); }
+html.opening-ready .opening-date { opacity: 0; transform: translate3d(0,9px,0); }
+html.opening-ready.opening-playing .opening-title h1 {
+  opacity: 1; transform: none; transition: opacity 850ms cubic-bezier(.22,1,.36,1), transform 850ms cubic-bezier(.22,1,.36,1);
+}
+html.opening-ready.opening-playing .opening-date {
+  opacity: 1; transform: none; transition: opacity 800ms 170ms cubic-bezier(.22,1,.36,1), transform 800ms 170ms cubic-bezier(.22,1,.36,1);
+}
+.opening-title { margin-top: 24px; }
+.opening h1 { font-size: 44px; line-height: 48px; letter-spacing: -.02em; }
+.opening-date { margin-top: 12px; }
+.opening-invitation { margin-top: 96px; }
+.opening-thought { font-size: 24px; line-height: 34px; }
+.letter-link {
+  color: var(--rose); display: inline-flex; align-items: center; gap: 12px;
+  margin-top: 32px; min-width: 180px; min-height: 48px;
+  font: 500 16px/24px Inter, system-ui, sans-serif;
+  text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px;
+}
+.small-rule { width: 24px; height: 1px; flex: none; background: var(--champagne); }
+.letter-link:visited { color: var(--rose); }
+.letter-link:hover, .letter-link:active { color: var(--ink); }
+.letter-link:focus-visible { outline: 2px solid var(--rose); outline-offset: 4px; }
+#letter { scroll-margin-top: 32px; }
+#letter:focus { outline: none; }
+
+.close-scene { padding-block: 96px 80px; }
+.salutation { font-size: 28px; line-height: 36px; }
+.salutation-following { margin-top: 16px; }
+.beach-memory { width: min(270px, calc(100% - 80px)); aspect-ratio: 9 / 16; margin-top: 40px; border-radius: 2px; }
+.after-memory { margin-top: 32px; }
+
+.history-scene { padding-block: 80px; }
+.intimate-heading { font-size: 30px; line-height: 38px; letter-spacing: -.01em; }
+.family-memory { width: min(292px, var(--prose)); aspect-ratio: 601 / 960; margin-top: 40px; border-radius: 2px; }
+
+.distance-scene { padding-block: 72px 80px; }
+.sea-photo { width: 100%; aspect-ratio: 9 / 16; margin-top: 40px; }
+.sea-photo picture { position: absolute; inset: 0; }
+.sea-photo img { position: absolute; left: 0; top: -21px; height: calc(100% + 42px); object-fit: cover; transform: translate3d(0,var(--sea-y,0px),0) scale(var(--sea-scale,1)); }
+
+.confession-scene { background: linear-gradient(to bottom,var(--ivory) 0,var(--cream) 72px,var(--cream) 100%); padding-block: 48px 96px; }
+.threshold-light { position: absolute; top: 0; width: 100%; height: 1px; background: var(--cream); pointer-events: none; }
+.tenderness-photo { width: min(246px, calc(100% - 80px)); aspect-ratio: 3 / 4; border-radius: 2px; }
+.confession-first { margin-top: 32px; line-height: 28px; }
+.confession-emphasis { margin-top: 56px; color: var(--rose); font-size: 30px; line-height: 38px; letter-spacing: -.01em; }
+.call-letter { margin-top: 112px; }
+.call-presence { margin-top: 24px; }
+.short-thoughts p + p { margin-top: 12px; }
+.call-quiet { margin-top: 72px; }
+.paragraph-group p + p { margin-top: 24px; }
+.reassurance { margin-top: 80px; }
+.certain { margin-top: 24px; }
+.staying-strong { margin-top: 32px; }
+.small-statement { font-size: 26px; line-height: 34px; letter-spacing: -.01em; }
+
+.gratitude-scene { padding-block: 96px 112px; }
+.statement { font-size: 32px; line-height: 40px; letter-spacing: -.015em; }
+.graduation-photo { width: min(292px, var(--prose)); aspect-ratio: 1436 / 1987; margin-top: 48px; }
+.gratitude-letter { margin-top: 48px; }
+.future-thoughts { margin-top: 64px; }
+.sacrifice { margin-top: 64px; }
+
+.ordinary-scene { padding-block: 80px 96px; }
+.family-love { width: min(342px, var(--outer)); aspect-ratio: 3 / 4; margin-top: 48px; border-radius: 2px; }
+.ordinary-letter { margin-top: 40px; }
+.little-boy { margin-top: 48px; }
+.birthday-closing { margin-top: 80px; }
+
+.hopeful-scene { background: linear-gradient(to bottom,var(--ivory) 0,var(--white) 96px,var(--white) 100%); padding-block: 112px 160px; }
+.landscape-photo { width: min(342px, var(--outer)); aspect-ratio: 4 / 3; }
+.hopeful-photo { margin-top: 48px; border-radius: 2px; }
+.hopeful-letter { margin-top: 48px; }
+.requests p + p { margin-top: 16px; }
+.trying { margin-top: 64px; }
+.return-promise { margin-top: 96px; color: var(--rose); font-size: 30px; line-height: 38px; letter-spacing: -.01em; }
+
+.final-scene { background: var(--white); padding-top: 96px; padding-bottom: calc(240px + env(safe-area-inset-bottom, 0px)); }
+.final-words { margin-top: 56px; text-align: center; }
+.final-words h2 { font-size: 34px; line-height: 42px; letter-spacing: -.015em; }
+.final-love { margin-top: 24px; font-size: 30px; line-height: 38px; letter-spacing: -.01em; }
+.final-date { margin-top: 32px; }
+
+/* Motion is progressive: the unenhanced letter and every image remain visible. */
+html.motion-ready [data-reveal].pending {
+  opacity: 0; transform: translate3d(var(--enter-x,0px),var(--enter-y,11px),0);
+}
+html.motion-ready [data-reveal].revealing {
+  transition: opacity 650ms cubic-bezier(.22,1,.36,1), transform 800ms cubic-bezier(.22,1,.36,1);
+}
+html.motion-ready .opening-thought.pending { --enter-y: 14px; }
+html.motion-ready .intimate-heading.pending, html.motion-ready .statement.pending { --enter-y: 12px; }
+html.motion-ready .after-memory.pending { --enter-y: 0px; --enter-x: 6px; }
+html.motion-ready .confession-first.pending, html.motion-ready .call-presence.pending,
+html.motion-ready .call-quiet [data-reveal].pending, html.motion-ready .reassurance [data-reveal].pending { --enter-y: 0px; }
+html.motion-ready .confession-emphasis.pending { --enter-y: 10px; }
+html.motion-ready .confession-emphasis.revealing { transition-duration: 900ms, 1100ms; }
+html.motion-ready .return-promise.pending { --enter-y: 12px; }
+html.motion-ready .return-promise.revealing { transition-duration: 900ms, 1100ms; }
+html.motion-ready [data-reveal="final"].revealing { transition-duration: 750ms, 900ms; }
+
+.photograph[data-photo="9"], .photograph[data-photo="12"], .photograph[data-photo="2"],
+.photograph[data-photo="14"], .photograph[data-photo="16"] {
+  transform: translate3d(0,var(--float-y,0px),0);
+}
+html.motion-ready .photograph.photo-pending { opacity: .72; clip-path: inset(0 0 10% 0); }
+html.motion-ready .photograph.photo-entering {
+  transition: opacity 900ms cubic-bezier(.22,1,.36,1), clip-path 1100ms cubic-bezier(.22,1,.36,1);
+}
+html.motion-ready .photograph.photo-pending img { transform: scale(1.025); }
+html.motion-ready .photograph.photo-entering img {
+  transition: transform 1100ms cubic-bezier(.22,1,.36,1);
+}
+html.motion-ready .beach-memory.photo-pending { clip-path: inset(0 0 13% 0); }
+html.motion-ready .family-memory.photo-pending { clip-path: inset(0 0 15% 0); }
+html.motion-ready .sea-photo.photo-pending { opacity: .68; clip-path: inset(0 0 18% 0); }
+html.motion-ready .sea-photo.photo-pending img { transform: translate3d(0,var(--sea-y,0px),0) scale(var(--sea-scale,1)); }
+html.motion-ready .tenderness-photo.photo-pending { opacity: .80; clip-path: none; }
+html.motion-ready .tenderness-photo.photo-pending img { transform: scale(1.008); }
+html.motion-ready .tenderness-photo.photo-entering { transition-duration: 750ms; }
+html.motion-ready .graduation-photo.photo-pending { clip-path: inset(4% 0 4% 0); }
+html.motion-ready .family-love.photo-pending { clip-path: inset(0 0 8% 0); }
+html.motion-ready .hopeful-photo.photo-pending { clip-path: inset(0 4% 0 4%); }
+.hopeful-photo img { transform: scale(var(--hope-scale,1)); }
+html.motion-ready .hopeful-photo.photo-pending img { transform: scale(1.035); }
+html.motion-ready .final-photo.photo-pending { opacity: .45; clip-path: none; }
+html.motion-ready .final-photo.photo-pending img { transform: scale(1.025); }
+html.motion-ready .final-photo.photo-entering { transition: opacity 1100ms cubic-bezier(.22,1,.36,1); }
+html.motion-ready .final-photo.photo-entering img { transition: transform 1300ms cubic-bezier(.22,1,.36,1); }
+
+@media (max-width: 359px) {
+  :root { --prose: calc(100% - 48px); --outer: calc(100% - 40px); }
+  .opening h1 { font-size: 38px; line-height: 44px; }
+  .opening-title { width: var(--outer); }
+  .beach-memory { width: min(270px, calc(100% - 80px)); }
+  .tenderness-photo { width: min(246px, calc(100% - 80px)); }
+}
+
+@media (min-width: 600px) {
+  :root { --prose: min(calc(100% - 48px), 440px); --outer: min(calc(100% - 48px), 560px); }
+  p { font-size: 19px; line-height: 32px; }
+  .opening { padding-top: 32px; }
+  .hero-photo { width: 440px; aspect-ratio: 3 / 4; }
+  .opening-title { width: var(--prose); }
+  .opening h1 { font-size: 50px; line-height: 56px; }
+  .sea-photo { width: 420px; aspect-ratio: 3 / 4; }
+  .family-love { width: min(420px, var(--outer)); }
+  .landscape-photo { width: min(560px, var(--outer)); }
+  .intimate-heading, .statement, .final-act-heading { font-size: 36px; line-height: 44px; }
+  .confession-emphasis { font-size: 34px; line-height: 42px; }
+}
+
+@media (min-width: 1024px) {
+  :root { --prose: 520px; --outer: 720px; }
+  .opening { padding-top: 48px; }
+  .hero-photo { width: 480px; }
+  .opening h1 { font-size: 56px; line-height: 62px; }
+  .sea-photo { width: 440px; }
+  .tenderness-photo { width: 300px; }
+  .family-love { width: 420px; }
+  .landscape-photo { width: 640px; }
+  .intimate-heading, .statement, .final-act-heading { font-size: 38px; line-height: 46px; }
+  .confession-emphasis { font-size: 36px; line-height: 44px; }
+  .final-words h2 { font-size: 42px; line-height: 50px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .hero-photo.intro-ready .hero-veil { opacity: 0; transition: none; }
+  .hero-photo.intro-ready img, .hero-photo img { transform: none; transition: none; }
+  html.opening-ready .opening-title h1, html.opening-ready .opening-date,
+  html.motion-ready [data-reveal].pending { opacity: 1; transform: none; transition: none; }
+  html.motion-ready [data-reveal].revealing { transition: none; }
+  html.motion-ready .photograph.photo-pending, html.motion-ready .photograph.photo-entering {
+    opacity: 1; clip-path: none; transition: none;
+  }
+  html.motion-ready .photograph.photo-pending img, html.motion-ready .photograph.photo-entering img,
+  .hopeful-photo img, .sea-photo img { transform: none; transition: none; }
+  .sea-photo img { top: 0; height: 100%; }
+  .photograph[data-photo="9"], .photograph[data-photo="12"], .photograph[data-photo="2"],
+  .photograph[data-photo="14"], .photograph[data-photo="16"] { transform: none; }
+}
